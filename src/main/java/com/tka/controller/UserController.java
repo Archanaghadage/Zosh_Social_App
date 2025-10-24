@@ -46,13 +46,13 @@ public class UserController {
 	}
 
 
-//	@PutMapping("/api/users/follow/{userId2}")
-//	public User followUserHandler(@RequestHeader("Authorization") String jwt, @PathVariable Integer userId2) throws Exception {
-//		
-//	 User reqUser=userService.findUserByJwt(jwt);
-//		User user = userService.followUser(reqUser.getId(), userId2);
-//		return user;
-//	}
+	@PutMapping("/api/users/follow/{userId2}")
+	public User followUserHandler(@RequestHeader("Authorization") String jwt, @PathVariable Integer userId2) throws Exception {
+		
+	 User reqUser=userService.findUserByJwt(jwt);
+		User user = userService.followUser(reqUser.getId(), userId2);
+		return user;
+	}
 
 	@GetMapping("/api/users/search")
 	public List<User> searchUser(@RequestParam("query") String query) {

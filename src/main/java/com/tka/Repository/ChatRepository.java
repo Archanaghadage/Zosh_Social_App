@@ -11,9 +11,11 @@ import com.tka.Models.User;
 
 public interface ChatRepository extends JpaRepository<Chat, Integer> {
 
-	public List<Chat> findByUserId(Integer userId);
+	public List<Chat> findByUsersId(Integer userId);
 	
-	@Query("select c from Chat c where :user Memeber of c.user And :reqUser Memeber of c.usr ")
-	public Chat findChatByUsersId(@Param("user") User user, @Param("reqUser") User reqUser);
-
+	@Query("select c from Chat c where :user MEMBER of c.users AND :reqUser MEMBER of c.users")
+	Chat findChatByUsersId(
+	    @Param("user") User user, 
+	    @Param("reqUser") User reqUser
+	);
 }

@@ -47,32 +47,31 @@ public class UserServiceImplementation implements UserService {
 		return user;
 	}
 
-//	@Override
-//	public User followUser(Integer reqUserId, Integer userId2) throws Exception {
-//	    User reqUser = findUserById(reqUserId);
-//	    User user2 = findUserById(userId2);
-//
-//	    // Prevent self-following
-//	    if (reqUser.getId().equals(user2.getId())) {
-//	        throw new Exception("You cannot follow yourself.");
-//	    }
+	@Override
+	public User followUser(Integer reqUserId, Integer userId2) throws Exception {
+	    User reqUser = findUserById(reqUserId);
+	    User user2 = findUserById(userId2);
 
-//	    // Check if already following
-//	    if (user2.getFollowers().contains(reqUser)) {
-//	        // Unfollow logic (toggle)
-//	        user2.getFollowers().remove(reqUser);
-//	        reqUser.getFollowing().remove(user2);
-//	    } else {
-//	        // Follow logic
-//	        user2.getFollowers().add(reqUser);
-//	        reqUser.getFollowing().add(user2);
-//	    }
-//
-//	    userRepository.save(user2);
-//	    userRepository.save(reqUser);
-//
-//    return reqUser;
-//	}
+	    // Prevent self-following
+	    if (reqUser.getId().equals(user2.getId())) {
+	        throw new Exception("You cannot follow yourself.");
+	    }
+
+	    // Check if already following
+	    if (user2.getFollowers().contains(reqUser)) {
+	        // Unfollow logic (toggle)
+	        user2.getFollowers().remove(reqUser);
+	        reqUser.getFollowing().remove(user2);
+	    } else {
+	        // Follow logic
+	        user2.getFollowers().add(reqUser);
+	        reqUser.getFollowing().add(user2);
+	    }
+
+	    userRepository.save(user2);
+	    userRepository.save(reqUser);
+    return reqUser;
+	}
 
 
 	@Override
